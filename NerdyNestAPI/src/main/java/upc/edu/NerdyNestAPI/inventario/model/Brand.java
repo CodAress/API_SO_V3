@@ -8,28 +8,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.List;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "products")
-public class Product {
+@Document(collection = "brands")
+public class Brand {
     @Id
     private String id;
     @Field(name = "name")
     private String name;
-    @Field(name = "price")
-    private Double price;
-    @Field(name = "stock")
-    private Integer stock;
     @Field(name = "description")
     private String description;
-    @Field(name = "marca")
-    private Brand marca;
-    @Field(name = "categoria")
-    private Category categoria;
-    @Field(name = "images")
-    private List<String> images;
+    @Field(name = "logo")
+    private String logo;
 }

@@ -41,6 +41,21 @@ public class LoginServiceImpl implements LoginService {
     }
 
          */
+
+        // Verifica las credenciales para el administrador
+        Administrator admin = adminRepository.findAdministratorByEmail(loggingRequest.getEmail());
+        if (admin != null && loggingRequest.getPassword().equals(admin.getPassword())) {
+            // Las credenciales son correctas
+            return admin.getRole();
+        }
+        // Verifica las credenciales para el cliente
+        Client client = clientRepository.findClientByEmail(loggingRequest.getEmail());
+        if (client != null && loggingRequest.getPassword().equals(client.getPassword())) {
+            // Las credenciales son correctas
+            return client.getRole();
+        }
+        
+
         return Role.UNAUTHORIZED;
     }
 }

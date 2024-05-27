@@ -7,6 +7,7 @@ import upc.edu.NerdyNestAPI.user.model.Administrator;
 import upc.edu.NerdyNestAPI.user.model.Role;
 import upc.edu.NerdyNestAPI.user.repository.AdministratorRepository;
 import upc.edu.NerdyNestAPI.user.service.AdministratorService;
+import upc.edu.NerdyNestAPI.utils.exception.ResourceNotFoundException;
 import upc.edu.NerdyNestAPI.utils.exception.ValidationException;
 
 import java.time.LocalDate;
@@ -137,7 +138,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
     private void existAdministratorById(String id) {
         if (!administratorRepository.existsById(id)){
-            throw new ValidationException("Administrator by id " + id + " not found");
+            throw new ResourceNotFoundException("Administrator by id " + id + " not found");
         }
     }
 }
