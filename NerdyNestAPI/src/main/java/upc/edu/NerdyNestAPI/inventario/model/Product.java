@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
@@ -32,4 +33,6 @@ public class Product {
     private Category categoria;
     @Field(name = "images")
     private List<String> images;
+    @Field(name = "specifications")
+    private Map<String, Object> specifications;
 }

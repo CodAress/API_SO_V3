@@ -3,6 +3,7 @@ package upc.edu.NerdyNestAPI.inventario.dto;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class ProductResponse {
@@ -14,4 +15,5 @@ public class ProductResponse {
     private Double price;
     private Integer stock;
     private List<String> images;
+    private Map<String, Object> specifications;
 }

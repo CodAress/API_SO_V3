@@ -27,6 +27,8 @@ public class ProductServiceImpl implements ProductService {
         existBrandById(brand_id);
         validateProduct(product);
         existProductByName(product);
+        product.setCategoria(categoryRepository.findById(category_id).get());
+        product.setMarca(brandRepository.findById(brand_id).get());
         return productRepository.save(product);
     }
 
@@ -82,12 +84,10 @@ public class ProductServiceImpl implements ProductService {
             throw new ValidationException("Product stock is required");
         if(product.getStock() < 0)
             throw new ValidationException("Product stock must be greater than or equal to zero");
-        if(product.getMarca() == null)
-            throw new ValidationException("Product brand is required");
-        if(product.getCategoria() == null)
-            throw new ValidationException("Product category is required");
         if(product.getImages() == null || product.getImages().isEmpty())
             throw new ValidationException("Product images are required");
+        if(product.getSpecifications() == null || product.getSpecifications().isEmpty())
+            throw new ValidationException("Product specifications are required");
     }
 
     private void existProductByName(Product product) {
