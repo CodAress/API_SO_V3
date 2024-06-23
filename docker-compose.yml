@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  nerdy_nest_api:
+    build: nerdy_nest
+    ports:
+      - "8089:8089"
