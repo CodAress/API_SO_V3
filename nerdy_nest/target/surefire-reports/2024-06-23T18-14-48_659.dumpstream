@@ -1,5 +1,0 @@
-# Created at 2024-06-23T18:14:48.779
-Boot Manifest-JAR contains absolute paths in classpath 'E:\API SO\Api_v4\API_SO_V3\nerdy_nest\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-

@@ -30,6 +30,7 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     @Override
     public Comment createComment(String client_id, String product_id, Comment comment) {
+        System.out.println(comment);
         existClientById(client_id);
         existProductById(product_id);
         validateComment(comment);
@@ -37,12 +38,15 @@ public class CommentServiceImpl implements CommentService {
         comment.setClientId(client_id);
         comment.setProductId(product_id);
         comment.setDate(LocalDateTime.now());
+        System.out.println("Comment antes de updata: " + comment.getRating().doubleValue());
         updateRatingToCreateComment(product_id, comment.getRating().doubleValue());
+        System.out.println("Comentario:" + comment);
         return commentRepository.save(comment);
     }
     @Transactional
     @Override
     public Comment updateComment(String client_id, String product_id, Comment comment) {
+
         existClientById(client_id);
         existProductById(product_id);
         validateComment(comment);
@@ -138,6 +142,7 @@ public class CommentServiceImpl implements CommentService {
         double rating = product.getRating();
         double newRating = (rating * totalComments + newPunctuation) / (totalComments + 1);
         product.setRating(newRating);
+        System.out.println("Rating: " + newRating);
         productRepository.save(product);
     }
 
@@ -152,6 +157,7 @@ public class CommentServiceImpl implements CommentService {
         double rating = product.getRating();
         double newRating = (rating * totalComments - newPunctuation) / (totalComments - 1);
         product.setRating(newRating);
+        System.out.println("Rating: " + newRating);
         productRepository.save(product);
     }
 }

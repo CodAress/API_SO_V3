@@ -9,5 +9,6 @@ public interface ClientService {
     Client getClientById(String id);
     List<Client> getAllClients();
     Client updateClient(String id, Client client);
+    Client getClientByEmailAndPassword(String email, String password);
     Boolean deleteClient(String id);
 }

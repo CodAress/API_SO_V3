@@ -66,6 +66,16 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client getClientByEmailAndPassword(String email, String password) {
+        existClientByEmail(email);
+        Client client = clientRepository.findClientByEmailAndPassword(email, password);
+        if(client == null){
+            throw new ResourceNotFoundException("Incorrect email or password");
+        }
+        return client;
+    }
+
+    @Override
     public Boolean deleteClient(String id) {
         existClientById(id);
         clientRepository.deleteById(id);
@@ -125,6 +135,11 @@ public class ClientServiceImpl implements ClientService {
     private void existClientById(String id) {
         if (!clientRepository.existsById(id)){
             throw new ResourceNotFoundException("Client by id " + id + " not found");
+        }
+    }
+    private void existClientByEmail(String email) {
+        if (!clientRepository.existsClientByEmailIgnoreCase(email)){
+            throw new ResourceNotFoundException("Incorrect email or password");
         }
     }
     private void existClientByEmail(Client client) {
